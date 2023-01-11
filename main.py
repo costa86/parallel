@@ -6,10 +6,11 @@ import os
 from joblib import Parallel, delayed
 import uuid
 
-source_file = 'dress.csv'
+source_file = "dress.csv"
+
 
 def create_image(image_name: str, url: str):
-    with open(image_name, 'wb') as f:
+    with open(image_name, "wb") as f:
         f.write(requests.get(url).content)
 
 
@@ -29,7 +30,7 @@ def get_color(image: str, quality: int = 1):
 
 
 def extract_image_colors(url: str):
-    file_name = f'{uuid.uuid4()}.png'
+    file_name = f"{uuid.uuid4()}.png"
     create_image(file_name, url)
     print(get_color(file_name))
     os.remove(file_name)
@@ -37,16 +38,22 @@ def extract_image_colors(url: str):
 
 def run(parallel: bool = False, sample: int = 0, csv_file: str = source_file):
     t1 = time.time()
-    
+
+    print(
+        f'{"Parallel" if parallel else "Regular"} execution using {"all" if not sample else sample} rows'
+    )
+
     if parallel:
-        print(f'Parallel execution using {"all" if not sample else sample} rows')
-        Parallel(n_jobs=-1)(delayed(extract_image_colors)(i)for i in get_links(csv_file, sample))
-        print(f'Took: {time.time()-t1}')
+        Parallel(n_jobs=-1)(
+            delayed(extract_image_colors)(i) for i in get_links(csv_file, sample)
+        )
+        print(f"Took: {round(time.time()-t1,2)}")
         return
-    
-    print(f'Regular execution using {"all" if not sample else sample} rows')
+
     for i in get_links(source_file, sample):
         extract_image_colors(i)
-    print(f'Took: {time.time()-t1}')
 
-run(0,5)
+    print(f"Took: {round(time.time()-t1,2)}")
+
+
+run(1, 5)
