@@ -11,10 +11,6 @@ from joblib import Parallel
 source_file = "dress.csv"
 
 
-# def hi():
-#     print("dde")
-
-
 def create_image(image_name: str, url: str):
     with open(image_name, "wb") as f:
         f.write(requests.get(url).content)
