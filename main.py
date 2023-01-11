@@ -1,12 +1,18 @@
 import csv
-import requests
-from colorthief import ColorThief
-import time
 import os
-from joblib import Parallel, delayed
+import time
 import uuid
 
+import requests
+from colorthief import ColorThief
+from joblib import delayed
+from joblib import Parallel
+
 source_file = "dress.csv"
+
+
+# def hi():
+#     print("dde")
 
 
 def create_image(image_name: str, url: str):
