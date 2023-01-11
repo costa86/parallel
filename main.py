@@ -29,10 +29,10 @@ def get_color(image: str, quality: int = 1):
 
 
 def extract_image_colors(url: str):
-    img_name = f'{uuid.uuid4()}.png'
-    create_image(img_name, url)
-    print(get_color(img_name))
-    os.remove(img_name)
+    file_name = f'{uuid.uuid4()}.png'
+    create_image(file_name, url)
+    print(get_color(file_name))
+    os.remove(file_name)
 
 
 def run(parallel: bool = False, sample: int = 0, csv_file: str = source_file):
@@ -49,4 +49,4 @@ def run(parallel: bool = False, sample: int = 0, csv_file: str = source_file):
         extract_image_colors(i)
     print(f'Took: {time.time()-t1}')
 
-run(1,5)
+run(0,5)
