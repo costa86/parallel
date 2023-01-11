@@ -8,6 +8,7 @@ from colorthief import ColorThief
 from joblib import delayed
 from joblib import Parallel
 
+
 source_file = "dress.csv"
 
 
@@ -58,4 +59,5 @@ def run(parallel: bool = False, sample: int = 0, csv_file: str = source_file):
     print(f"Took: {round(time.time()-t1,2)}")
 
 
+run(0, 5)
 run(1, 5)

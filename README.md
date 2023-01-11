@@ -19,3 +19,7 @@ Results:
     (213, 215, 214)
     (141, 144, 140)
     Took: 1.7356815338134766
+
+
+## Pre commit
+    pre-commit run --all-files
